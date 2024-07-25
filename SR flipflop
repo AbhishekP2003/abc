@@ -1,0 +1,27 @@
+`timescale 1ns/1ns
+module srf1(clk, res, s, r, q, qb);
+input clk, res, s, r;
+output q, qb;
+reg q, qb;
+
+always @(posedge clk or posedge res) begin
+    if (res) begin
+        q <= 1'bz;
+        qb <= 1'bz;
+    end else begin
+        if (s == 1'b0 && r == 1'b0) begin
+            // q and qb retain their values
+        end else if (s == 1'b0 && r == 1'b1) begin
+            q <= 1'b0;
+            qb <= 1'b1; // qb should be the complement of q
+        end else if (s == 1'b1 && r == 1'b0) begin
+            q <= 1'b1;
+            qb <= 1'b0; // qb should be the complement of q
+        end else begin
+            q <= 1'b0;
+            qb <= 1'b0; // Both should be 0 in this case
+        end
+    end
+end
+
+endmodule
