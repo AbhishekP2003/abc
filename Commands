@@ -1,0 +1,34 @@
+Steps
+
+gedit fa.v
+gedit fa_tb.v
+csh
+source /home/install/cshrc
+ nclaunch -new
+
+------------------------------------
+genus
+read_libs /home/install/FOUNDRY/digital/90nm/dig/lib/slow.lib
+read_hdl fulladder.v
+elaborate
+gedit constraints_top.sdc
+set_input_delay -max 0.8 [get_ports "a"]
+set_input_delay -max 0.8 [get_ports "b"]
+set_input_delay -max 0.8 [get_ports "cin"]
+set_output_delay -max 0.8 [get_ports "s"]
+set_output_delay -max 0.8 [get_ports "cout"]
+SAVE AND CLOSE
+
+----------------------------------------------------------
+read_sdc constraints_top.sdc
+syn_generic
+syn_map
+syn_opt
+
+gui_show - shows schematic block diagram
+
+write_hdl
+
+report_power
+report_area
+report_timing
