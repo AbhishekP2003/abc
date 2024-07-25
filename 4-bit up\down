@@ -1,0 +1,22 @@
+fa.v
+
+
+module fa(a,b,cin,s,cout);
+input [3:0]a,b;
+input cin;
+output [3:0]s;
+output cout;
+
+wire s1,s2,s3;
+f_a fa0 (a[0],b[0],cin,s[0],s1);
+f_a fa1 (a[1],b[1],s1,s[1],s2);
+f_a fa2 (a[2],b[2],s2,s[2],s3);
+f_a fa3 (a[3],b[3],s3,s[3],cout);
+endmodule
+
+module f_a(a,b,cin,s,cout);
+input a,b,cin;
+output s,cout;
+assign s = a^b^cin;
+assign cout = ((a&b)|(b&cin)|(cin&a));
+endmodule
