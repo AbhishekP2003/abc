@@ -1,0 +1,16 @@
+`resetall
+`timescale 1ns/1ns
+module srl_tt;
+wire q,qb;
+reg en,s,r;
+srlatch l1(en,s,r,q,qb);
+initial
+begin
+en= 1'b0; s=1'b0; r=1'b1;
+#20 en= 1'b1; s=1'b1; r=1'b0;
+#20 en= 1'b1; s=1'b0; r=1'b1;
+#20 en= 1'b1; s=1'b0; r=1'b0;
+#20 en= 1'b1; s=1'b1; r=1'b1;
+#100 $finish;
+end
+endmodule
