@@ -1,0 +1,14 @@
+`resetall
+`timescale 1ns/1ns
+module dlatch(e,d,q);
+input e,d;
+output q;
+reg q;
+always @(e or d)
+begin
+if(!e)
+q<= 1’bz;
+else
+q<= d;
+end
+endmodule
