@@ -1,0 +1,15 @@
+`resetall
+`timescale 1ns/1ns
+module dlatch_test;
+wire q;
+reg e,d;
+dlatch d1(e,d,q);
+initial
+begin
+d=1’b0; e=1’b0;
+#20 e=1’b1; d=1’b0;
+#20 e=1’b1; d=1’b1;
+#20 e=1’b1; d=1’b0;
+#100 $finish;
+end
+endmodule
