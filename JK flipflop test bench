@@ -1,0 +1,13 @@
+module jkfftest;
+reg j,k,clk; 
+wire q,qb;
+jkff jk1(j,k,clk,q,qb);
+initial clk=1'b0; 
+always #5 clk=~clk;
+initial 
+begin 
+j=1'b0; k=1'b0;
+#5 j=1'b0: #10 k=1'b1;
+#5 j=1'b1;
+end 
+endmodule
