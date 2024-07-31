@@ -3,7 +3,7 @@ reg clk,d;
 wire q,qb; 
 dff d1(d,elk,q,qb);
 initial
-begin clk = 1 b0; d=1'b0; end
+begin clk = 1'b0; d=1'b0; end
 always
 #5 clk=~clk;
 initial
