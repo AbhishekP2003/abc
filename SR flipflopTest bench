@@ -1,23 +1,16 @@
-`timescale 1ns/1ns
-module srf2;
-reg clk, res, s, r;
-wire q, qb;
-srf1 n1(clk, res, s, r, q, qb);
-
-initial begin
-    clk = 1'b0;
-end
-
-always #10 clk = ~clk;
-
-initial begin
-    res = 1'b1; // Initial reset to high
-    s = 1'b0;
-    r = 1'b1;
-    #20 res = 1'b0; s = 1'b0; r = 1'b1; // Reset low, set R
-    #20 res = 1'b0; s = 1'b0; r = 1'b0; // Both S and R low
-    #20 res = 1'b0; s = 1'b1; r = 1'b0; // Set S
-    #20 res = 1'b0; s = 1'b1; r = 1'b1; // Both S and R high
-    #100 $finish;
-end
+module srfftest;
+reg clk,s,r;
+wire q,qb;
+srff s1(s,r,clk,q,qb);
+initial
+clk=1'b0;
+always #5 clk=~clk;
+initial
+begin
+#10 s=1'b0; r=1'b1;
+#10 s=1'b1; r=1'b0;
+#15 s=1'b0; r=1'b0;
+#20 s=1'b1; r=1'b1;
+#20;
+end 
 endmodule
