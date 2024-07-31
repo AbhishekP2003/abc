@@ -2,8 +2,7 @@ module srfftest;
 reg clk,s,r;
 wire q,qb;
 srff s1(s,r,clk,q,qb);
-initial
-clk=1'b0;
+initial clk=1'b0;
 always #5 clk=~clk;
 initial
 begin
