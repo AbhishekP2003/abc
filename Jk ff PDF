@@ -1,11 +1,11 @@
-module jklatch(en, j, k, q, qb);
- input j, k, en;
+module jkf1(clk, res, j, k, q, qb);
+ input clk, res, j, k;
  output q, qb;
  reg q, qb;
- always @(en or j or k) begin
- if (!en) begin
- q <= q;
- qb <= qb;
+ always @(posedge clk or posedge res) begin
+ if (res) begin
+ q <= 1'b0;
+ qb <= 1'b1;
  end else begin
  if (j == 1'b0 && k == 1'b0) begin
  q <= q;
@@ -16,9 +16,9 @@ module jklatch(en, j, k, q, qb);
  end else if (j == 1'b1 && k == 1'b0) begin
  q <= 1'b1;
  qb <= 1'b0;
- end else begin
+ end else if (j == 1'b1 && k == 1'b1) begin
  q <= ~q;
- qb <= ~qb;
+ qb <= ~q;
  end
  end
  end
