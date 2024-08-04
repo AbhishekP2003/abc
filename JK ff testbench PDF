@@ -1,13 +1,17 @@
-module jkl_Ʃ;
+module jkf2;
+ reg clk, res, j, k;
  wire q, qb;
- reg en, j, k;
- jklatch l1(en, j, k, q, qb);
+ jkf1 n1(clk, res, j, k, q, qb);
+ always #10 clk = ~clk;
  iniƟal begin
- en = 1'b0; j = 1'b0; k = 1'b1;
- #20 en = 1'b1; j = 1'b1; k = 1'b0;
- #20 en = 1'b1; j = 1'b0; k = 1'b1;
- #20 en = 1'b1; j = 1'b0; k = 1'b0;
- #20 en = 1'b1; j = 1'b1; k = 1'b1;
- #100 $finish;
+ clk = 1'b0;
+ res = 1'b1;
+ j = 1'b0;
+ k = 1'b1;
+ #40 res = 1'b0; j = 1'b0; k = 1'b0;
+ #20 res = 1'b0; j = 1'b0; k = 1'b1;
+ #20 res = 1'b0; j = 1'b1; k = 1'b0;
+ #20 res = 1'b0; j = 1'b1; k = 1'b1;
+ #50 $finish;
  end
 endmodule 
