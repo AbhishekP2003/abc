@@ -1,11 +1,13 @@
 module dfftest;
 reg clk,d;
 wire q,qb; 
-dff d1(d,elk,q,qb);
+dff d1(d,clk,q,qb);
 initial
 begin clk = 1'b0; d=1'b0; end
 always
 #5 clk=~clk;
 initial
+#10 d=1'b0;
+#10 d=1'b1;
 #10 d=1'b0;
 endmodule
